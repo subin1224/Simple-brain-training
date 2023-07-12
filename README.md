@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Project_Simple-brain-training
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 개요
 
-## Available Scripts
+React에 익숙해지기 위한 첫 프로젝트 입니다.
 
-In the project directory, you can run:
+간단한 뇌 훈련 테스트 이며 치매 예방 테스트에서 아이디어를 얻었습니다.
 
-### `npm start`
+# Step 1. [07-11] 메인 컴포넌트 작성하기
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+통일된 Text를 보여주기 위해 Txt Component를 만들었습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Button 역시 종종 쓰일 것 같아 만들었습니다.
 
-### `npm test`
+메인 화면은 심플하게 프로젝트 이름과, 다음 페이지로 넘어갈 버튼으로 구성 되도록 진행 할 예정입니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`@emotion` 을 채택했습니다. → CSS-In-JS
 
-### `npm run build`
+페이지 전체를 쓸 부분은 아니기 때문에 pageLayout 컴포넌트를 만들었습니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+작성한 컴포넌트
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Txt
+2. Button
+3. PageLayout
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Step 2. [07-12] 메인 페이지 작성하기
 
-### `npm run eject`
+추가 작성 컴포넌트
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Card Component
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+글 - 이미지 - 버튼 혹은 이미지 - 글 - 버튼 순의 카드 형식의 배치가 반복될 것 같아 카드 컴포넌트를 작성 하였습니다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+카드 컴포넌트를 이용하여 메인 페이지를 작성하였습니다.
