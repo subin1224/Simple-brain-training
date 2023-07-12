@@ -1,15 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { Children } from "react";
 
-export function PageLayout({ children }) {
+export function CardTitle({ children }) {
   return (
     <div
       css={css`
-        max-width: 650px;
-        width: 100%;
-        padding: 0 auto;
-        margin: 0 auto;
-        height: auto;
+        margin: 0.2rem;
       `}
     >
       {children}
