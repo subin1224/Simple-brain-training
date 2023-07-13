@@ -8,7 +8,7 @@ export function Button({ variant = "primary", size = "medium", ...props }) {
         border: "0 solid transparent",
         borderRadius: "7px",
         cursor: "pointer",
-        transition: "background .2s ease,color .1s ease",
+        transition: "background 0.2s ease",
         fontWeight: 600,
         lineHeight: "26px",
         ...TYPE_VARIANTS[variant],
