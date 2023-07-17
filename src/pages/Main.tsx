@@ -9,7 +9,7 @@ import { CardImg } from "../components/card/CardImg";
 import { PageLayout } from "../components/PageLayout";
 import { CardFooter } from "../components/card/CardFooter";
 import { Button } from "../components/Button";
-import brainLogo from "../assets/brain_main_image.jpeg";
+import brainLogo from "../assets/brain-logo.jpg";
 
 export function Main() {
   return (

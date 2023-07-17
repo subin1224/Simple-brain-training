@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
+import { ReactNode } from "react";
 
-export function PageLayout({ children }) {
+export function PageLayout({ children }: { children: ReactNode }) {
   return (
     <div
       css={{

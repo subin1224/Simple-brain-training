@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { ReactNode } from "react";
 
-export function CardFooter({ children }) {
+export function CardFooter({ children }: { children: ReactNode }) {
   return (
     <div
       css={css`

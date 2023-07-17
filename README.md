@@ -8,17 +8,17 @@ React에 익숙해지기 위한 첫 프로젝트 입니다.
 
 ---
 
+#[07-18] TypeScript 적용
+
 # [07-13] Router 적용 및 Input 컴포넌트 초본
 
-1. Next 버튼을 누르면 다음 문제로 넘어가기a
+1. Next 버튼을 누르면 다음 문제로 넘어가기
 
 → 라우터 학습 및 이용 → FindAnimalName 페이지 작성
 
 // 해당 부분은 다음 페이지들을 개발하면서 수정 예정
 
 1. Input 컴포넌트 작성
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b8eaaf99-98df-47b5-9483-cf04694618e9/Untitled.png)
 
 - Focus 될 때 text 아래 밑줄 제거
 - maxLength 후에 추가 입력 방지 (다음 Input 으로 넘어가거나 ..)

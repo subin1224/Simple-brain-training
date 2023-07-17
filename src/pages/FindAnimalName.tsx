@@ -18,7 +18,7 @@ export function FindAnimalName() {
         </CardTitle>
         <CardContent>
           <Txt typography="h2">1. ㄱ ㄹ </Txt>
-          <Input maxLength="2" />
+          <Input maxLength={2} />
         </CardContent>
       </Card>
     </PageLayout>

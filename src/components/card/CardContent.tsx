@@ -1,11 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { ReactNode } from "react";
 
-export function CardTitle({ children }) {
+export function CardContent({ children }: { children: ReactNode }) {
   return (
     <div
       css={css`
-        margin: 0.2rem;
+        overflow: hidden;
+        height: 200px;
       `}
     >
       {children}

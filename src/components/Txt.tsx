@@ -1,12 +1,17 @@
 /** @jsxImportSource @emotion/react */
+import { HTMLAttributes } from "react";
 
-export function Txt({ typography = "p", color, ...props }) {
+interface Props extends HTMLAttributes<HTMLSpanElement> {
+  typography?: "h1" | "h2" | "h3" | "h4" | "h5" | "p";
+  color?: string;
+}
+
+export function Txt({ typography = "p", ...props }: Props) {
   return (
     <span
       css={{
         margin: 0,
         padding: 0,
-        color,
         lineHeight: 1.6,
         ...TYPOGRAPH_VARIANT[typography],
       }}

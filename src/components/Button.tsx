@@ -1,6 +1,16 @@
 /** @jsxImportSource @emotion/react */
+import { ButtonHTMLAttributes } from "react";
 
-export function Button({ variant = "primary", size = "medium", ...props }) {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "primary" | "secondary";
+  size?: "medium" | "large";
+}
+
+export function Button({
+  variant = "primary",
+  size = "medium",
+  ...props
+}: Props) {
   return (
     <button
       css={{
