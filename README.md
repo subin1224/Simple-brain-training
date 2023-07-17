@@ -8,7 +8,7 @@ React에 익숙해지기 위한 첫 프로젝트 입니다.
 
 ---
 
-#[07-18] TypeScript 적용
+# [07-18] TypeScript 적용
 
 # [07-13] Router 적용 및 Input 컴포넌트 초본
 
