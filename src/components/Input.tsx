@@ -4,31 +4,42 @@ import {
   ForwardedRef,
   forwardRef,
   InputHTMLAttributes,
-  ReactElement,
+  ChangeEvent,
 } from "react";
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  children?: ReactElement; // 추후 수정
+interface Props
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange"> {
+  value: string;
+  length: number;
+  onChange: (value: string) => void;
 }
 
 export const Input = forwardRef(
   (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
+    const { value, length, onChange, ...rest } = props;
+
+    const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      const newValue = e.target.value.slice(0, length);
+      onChange(newValue);
+    };
+
     return (
       <input
         css={{
+          width: "100%",
+          padding: "0 18px",
           border: "none",
-          width: "4.8ch",
-          background:
-            "repeating-linear-gradient(90deg, dimgrey 0, dimgrey 2ch, transparent 0, transparent 2.5ch) 0 100%/100% 2px no-repeat",
           color: "dimgrey",
-          fontSize: "48px",
-          letterSpacing: "1ch",
+          fontSize: "40px",
           "&:focus": {
             outline: "none",
           },
         }}
+        type="text"
+        value={value}
+        onChange={changeHandler}
         ref={ref}
-        {...props}
+        {...rest}
       />
     );
   }
