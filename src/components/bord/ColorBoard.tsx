@@ -1,9 +1,9 @@
+/** @jsxImportSource @emotion/react */
 import { ReactNode } from 'react';
 import { BoardItem } from './BoardItem';
 
-/** @jsxImportSource @emotion/react */
-
 type ItemObject = {
+  key: string;
   text: string;
   color?: string;
 };
@@ -16,14 +16,16 @@ interface Props {
 export function ColorBoard({ row, data }: Props) {
   return (
     <div
-      style={{
+      css={{
         display: 'grid',
         gridTemplateColumns: `repeat(${row}, 1fr)`,
       }}
     >
       {data.map(
         (item): ReactNode => (
-          <BoardItem style={{ color: item.color }}>{item.text}</BoardItem>
+          <BoardItem color={item.color} onClick={() => console.log(item.color)}>
+            {item.text}
+          </BoardItem>
         )
       )}
     </div>

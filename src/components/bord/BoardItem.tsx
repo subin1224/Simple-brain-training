@@ -6,6 +6,16 @@ interface Props extends HTMLAttributes<HTMLParagraphElement> {
   textAlign?: string;
 }
 
-export function BoardItem({ ...props }: Props) {
-  return <p css={{ width: '48px' }} {...props} />;
+export function BoardItem({ color, ...props }: Props) {
+  return (
+    <p
+      css={{
+        color: color,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        cursor: 'pointer',
+      }}
+      {...props}
+    />
+  );
 }
