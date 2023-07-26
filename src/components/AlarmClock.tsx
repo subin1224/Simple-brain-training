@@ -1,21 +1,24 @@
 /** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 
 import { useEffect, useState } from 'react';
 import alarmClock from '../assets/alarm-clock.png';
 import { Txt } from './Txt';
+import { keyframes } from '@emotion/react';
 
 interface Props {
+  size?: 'large' | 'small';
   initialTime: number;
   onTimeout: () => void;
 }
 
-export function AlarmClock(props: Props) {
-  const { initialTime, onTimeout } = props;
-
+export function AlarmClock({ size = 'small', initialTime, onTimeout }: Props) {
   const [time, setTime] = useState<number>(initialTime);
+  const [isFinished, setIsFinished] = useState<boolean>(false);
 
   useEffect(() => {
     if (time === 0) {
+      setIsFinished(true);
       onTimeout();
       return;
     }
@@ -29,21 +32,26 @@ export function AlarmClock(props: Props) {
 
   return (
     <div
-      css={{
-        display: 'inline-block',
-        position: 'relative',
-        width: '200px',
-        height: '200px',
-      }}
+      css={css`
+        display: inline-block;
+        position: relative;
+        ${CLOCK_SIZE[size]}
+        ${isFinished
+          ? css`
+              animation: ${finishAnimation} 0.5s 2;
+            `
+          : ''}
+      `}
     >
-      <img css={{ width: '200px' }} src={alarmClock} />
+      <img css={{ width: CLOCK_SIZE[size].width }} src={alarmClock} />
       <Txt
-        typography='h2'
         css={{
           position: 'absolute',
           top: '56%',
           left: '52%',
           transform: 'translate(-50%, -50%)',
+          fontSize: CLOCK_SIZE[size].fontSize,
+          fontWeight: CLOCK_SIZE[size].fontWeight,
         }}
       >
         {time}
@@ -51,3 +59,30 @@ export function AlarmClock(props: Props) {
     </div>
   );
 }
+
+const CLOCK_SIZE = {
+  large: {
+    width: '500px',
+    height: '500px',
+    fontSize: '150px',
+    fontWeight: 800,
+  },
+  small: {
+    width: '200px',
+    height: '200px',
+    fontSize: '48px',
+    fontWeight: 800,
+  },
+};
+
+const finishAnimation = keyframes`
+  0%, 100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-30deg);
+  }
+  75% {
+    transform: rotate(30deg);
+  }
+`;
