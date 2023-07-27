@@ -7,6 +7,7 @@ export function Card({ children }: { children: ReactNode }) {
     <div
       css={css`
         width: 800px;
+        margin: 0 auto;
         overflow: hidden;
         box-shadow: 0px 0px 15px -5px;
       `}

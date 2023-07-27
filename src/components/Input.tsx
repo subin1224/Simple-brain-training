@@ -5,10 +5,10 @@ import {
   forwardRef,
   InputHTMLAttributes,
   ChangeEvent,
-} from "react";
+} from 'react';
 
 interface Props
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange"> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   value: string;
   length: number;
   onChange: (value: string) => void;
@@ -26,16 +26,16 @@ export const Input = forwardRef(
     return (
       <input
         css={{
-          width: "100%",
-          padding: "0 18px",
-          border: "none",
-          color: "dimgrey",
-          fontSize: "40px",
-          "&:focus": {
-            outline: "none",
+          width: '100%',
+          padding: '0 18px',
+          border: 'none',
+          color: 'dimgrey',
+          fontSize: '40px',
+          '&:focus': {
+            outline: 'none',
           },
         }}
-        type="text"
+        type='text'
         value={value}
         onChange={changeHandler}
         ref={ref}

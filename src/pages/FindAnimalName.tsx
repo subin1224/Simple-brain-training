@@ -4,9 +4,15 @@ import { Txt } from '../components/Txt';
 import { Card } from '../components/card/Card';
 import { CardContent } from '../components/card/CardContent';
 import { CardTitle } from '../components/card/CardTitle';
-import { ConsonantInput } from 'components/ConsonantInput';
+import { ConsonantInput, WrapperWithIndex } from 'components/ConsonantInput';
 import { Button } from 'components/Button';
 import { extractConsonant } from 'utils/commonUtils';
+
+export interface QuestionFindAnimalName {
+  consonant: string;
+  answer: string;
+  isAnswered: boolean;
+}
 
 export function FindAnimalName() {
   const answerFindAnimalName = [
@@ -36,6 +42,19 @@ export function FindAnimalName() {
     questionFindAniamlName[idx] = { ...item };
   };
 
+  // TODO
+  /*
+  next Button 을 누르면 link to colorsWord
+  그와 동시에
+  정답 체크 해서 context 저장
+
+  정답 체크 로직
+  1. Next 버튼을 누른다
+  2. 사용자가 입력한 모든 값들을 가져온다
+  3. 정답과 사용자가 입력한 값을 비교해서 정답을 체크한다. 
+  4. 정답 갯수를 컨텍스트에 저장한다. 
+  */
+
   return (
     <PageLayout>
       <Card>
@@ -53,11 +72,12 @@ export function FindAnimalName() {
           }}
         >
           {questionFindAniamlName.map((item, idx) => (
-            <ConsonantInput
-              key={`${item.answer}` + idx}
-              question={item}
-              checkAnswer={checkAnswer}
-            />
+            <WrapperWithIndex key={`${item.answer}` + idx} idx={idx + 1}>
+              <ConsonantInput
+                key={`${item.answer}${item.consonant}`}
+                question={item}
+              />
+            </WrapperWithIndex>
           ))}
         </CardContent>
         <CardFooter>
@@ -66,10 +86,4 @@ export function FindAnimalName() {
       </Card>
     </PageLayout>
   );
-}
-
-export interface QuestionFindAnimalName {
-  consonant: string;
-  answer: string;
-  isAnswered: boolean;
 }
