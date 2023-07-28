@@ -7,6 +7,8 @@ import { CardTitle } from '../components/card/CardTitle';
 import { ConsonantInput, WrapperWithIndex } from 'components/ConsonantInput';
 import { Button } from 'components/Button';
 import { extractConsonant } from 'utils/commonUtils';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export interface QuestionFindAnimalName {
   consonant: string;
@@ -15,6 +17,10 @@ export interface QuestionFindAnimalName {
 }
 
 export function FindAnimalName() {
+  const [userAnswers, setUserAnswers] = useState([]);
+
+  const inputChangeHandler = () => {};
+
   const answerFindAnimalName = [
     '기린',
     '코끼리',
@@ -38,10 +44,6 @@ export function FindAnimalName() {
       };
     });
 
-  const checkAnswer = (item: QuestionFindAnimalName, idx: number) => {
-    questionFindAniamlName[idx] = { ...item };
-  };
-
   // TODO
   /*
   next Button 을 누르면 link to colorsWord
@@ -49,18 +51,22 @@ export function FindAnimalName() {
   정답 체크 해서 context 저장
 
   정답 체크 로직
-  1. Next 버튼을 누른다
-  2. 사용자가 입력한 모든 값들을 가져온다
+  1. Next 버튼을 누른다 = uncontrolled Components => ref 이용
+  2. 사용자가 입력한 모든 값들을 가져온다 
   3. 정답과 사용자가 입력한 값을 비교해서 정답을 체크한다. 
   4. 정답 갯수를 컨텍스트에 저장한다. 
   */
+
+  const clickButtonHandler = () => {
+    console.log('click Button');
+  };
 
   return (
     <PageLayout>
       <Card>
         <CardTitle>
           <Txt typography='h3'>동물 이름 맞히기</Txt>
-          <br /> {/* 추후 수정 예정 */}
+          <br />
           <Txt typography='h5'>
             다음 제시된 자음을 보고 동물 이름을 맞혀보세요.
           </Txt>
@@ -81,7 +87,9 @@ export function FindAnimalName() {
           ))}
         </CardContent>
         <CardFooter>
-          <Button>Next</Button>
+          <Link to='/colorsWord'>
+            <Button onClick={clickButtonHandler}>Next</Button>
+          </Link>
         </CardFooter>
       </Card>
     </PageLayout>
