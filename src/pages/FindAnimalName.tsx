@@ -8,57 +8,43 @@ import { ConsonantInput, WrapperWithIndex } from 'components/ConsonantInput';
 import { Button } from 'components/Button';
 import { extractConsonant } from 'utils/commonUtils';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import useCountAnswer from 'components/hooks/useCountAnswer';
+import { AnswerContext } from 'contexts/answer-context';
 
 export interface QuestionFindAnimalName {
   consonant: string;
   answer: string;
-  isAnswered: boolean;
 }
 
 export function FindAnimalName() {
-  const [userAnswers, setUserAnswers] = useState([]);
+  const [userAnswers, setUserAnswers] = useState<{ [answer: string]: boolean }>(
+    {}
+  );
+  const answerCtx = useContext(AnswerContext);
 
-  const inputChangeHandler = () => {};
+  const { answerCount } = useCountAnswer(userAnswers);
 
-  const answerFindAnimalName = [
-    '기린',
-    '코끼리',
-    '얼룩말',
-    '도롱뇽',
-    '하마',
-    '청설모',
-    '까마귀',
-    '멧돼지',
-    '다람쥐',
-    '도마뱀',
-    '독수리',
-    '참새',
-  ];
+  const inputChangeHandler = (answer: string, isCorrect: boolean) => {
+    setUserAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [answer]: isCorrect,
+    }));
+  };
+
   const questionFindAniamlName: QuestionFindAnimalName[] =
-    answerFindAnimalName.map((words) => {
+    ANSWER_FIND_ANIMAL_NAME.map((words) => {
       return {
         consonant: extractConsonant(words),
         answer: words,
-        isAnswered: false,
       };
     });
 
-  // TODO
-  /*
-  next Button 을 누르면 link to colorsWord
-  그와 동시에
-  정답 체크 해서 context 저장
-
-  정답 체크 로직
-  1. Next 버튼을 누른다 = uncontrolled Components => ref 이용
-  2. 사용자가 입력한 모든 값들을 가져온다 
-  3. 정답과 사용자가 입력한 값을 비교해서 정답을 체크한다. 
-  4. 정답 갯수를 컨텍스트에 저장한다. 
-  */
-
   const clickButtonHandler = () => {
-    console.log('click Button');
+    answerCtx.onSaveCount({
+      question: ANSWER_FIND_ANIMAL_NAME.length,
+      answer: answerCount,
+    });
   };
 
   return (
@@ -82,6 +68,7 @@ export function FindAnimalName() {
               <ConsonantInput
                 key={`${item.answer}${item.consonant}`}
                 question={item}
+                onInputChange={inputChangeHandler}
               />
             </WrapperWithIndex>
           ))}
@@ -95,3 +82,18 @@ export function FindAnimalName() {
     </PageLayout>
   );
 }
+
+const ANSWER_FIND_ANIMAL_NAME = [
+  '기린',
+  '코끼리',
+  '얼룩말',
+  '도롱뇽',
+  '하마',
+  '청설모',
+  '까마귀',
+  '멧돼지',
+  '다람쥐',
+  '도마뱀',
+  '독수리',
+  '참새',
+];

@@ -1,20 +1,14 @@
-interface CompareAnswer {
-  userAnswer: Array<string | number>;
-  correctAnswer: Array<string | number>;
+interface UserAnswers {
+  [answer: string]: boolean;
 }
 
-const useCountAnswer = (compareAnswer: CompareAnswer) => {
-  const { userAnswer, correctAnswer } = compareAnswer;
-  const questionsCount = correctAnswer.length;
+const useCountAnswer = (
+  userAnswers: UserAnswers
+): { questionCount: number; answerCount: number } => {
+  const questionCount = Object.keys(userAnswers).length;
+  const answerCount = Object.values(userAnswers).filter(Boolean).length;
 
-  let answerCount = 0;
-  for (let i = 0; i < questionsCount; i++) {
-    if (userAnswer[i] === correctAnswer[i]) {
-      answerCount++;
-    }
-  }
-
-  return { answerCount, questionsCount };
+  return { questionCount, answerCount };
 };
 
 export default useCountAnswer;

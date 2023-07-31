@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useState, ReactNode } from 'react';
+import { useState, ReactNode, useRef, useContext } from 'react';
 
 import { Txt } from '../components/Txt';
 import { Input } from '../components/Input';
@@ -9,11 +9,17 @@ import { GoArrowRight } from 'react-icons/go';
 
 interface Props {
   question: QuestionFindAnimalName;
+  onInputChange: (answer: string, isCorrect: boolean) => void;
 }
 
 export function ConsonantInput(props: Props) {
-  const { question } = props;
+  const { question, onInputChange } = props;
   const [inputValue, setInputValue] = useState('');
+
+  const changeHandler = (value: string) => {
+    setInputValue(value);
+    onInputChange(question.answer, value === question.answer);
+  };
 
   return (
     <div
@@ -31,7 +37,7 @@ export function ConsonantInput(props: Props) {
       <Input
         value={inputValue}
         length={question.consonant.length}
-        onChange={setInputValue}
+        onChange={changeHandler}
       />
     </div>
   );
