@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react';
 import alarmClock from '../assets/alarm-clock.png';
 import { Txt } from './Txt';
 import { keyframes } from '@emotion/react';
+import { SIZE_TYPE } from '../constants/size';
 
 interface Props {
-  size?: 'large' | 'small';
+  size?: SIZE_TYPE;
   initialTime: number;
   onTimeout: () => void;
 }
@@ -65,6 +66,12 @@ const CLOCK_SIZE = {
     width: '500px',
     height: '500px',
     fontSize: '150px',
+    fontWeight: 800,
+  },
+  medium: {
+    width: '300px',
+    height: '300px',
+    fontSize: '100px',
     fontWeight: 800,
   },
   small: {
