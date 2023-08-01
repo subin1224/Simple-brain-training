@@ -23,7 +23,7 @@ export function ColorBoard({ row, data }: Props) {
     >
       {data.map(
         (item): ReactNode => (
-          <BoardItem key={`color - ${item.color}`} color={item.color}>
+          <BoardItem key={item.key} color={item.color}>
             {item.text}
           </BoardItem>
         )

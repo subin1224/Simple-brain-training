@@ -7,17 +7,18 @@ interface Props extends HTMLAttributes<HTMLParagraphElement> {
   textAlign?: string;
   children: ReactNode;
 }
-/** conextAPI / useReducer 사용 */
-const correctAnswer = 'blue';
-let answerCount = 0;
-const confirmClickValue = (color: string | undefined) => {
-  console.log(color);
-  if (correctAnswer === color) {
-    answerCount++;
-  }
-  console.log(answerCount);
-};
+
 export function BoardItem({ color, children, ...props }: Props) {
+  /** conextAPI / useReducer 사용 */
+  const correctAnswer = 'blue';
+  let answerCount = 0;
+  const confirmClickValue = (color: string | undefined) => {
+    console.log(color);
+    if (correctAnswer === color) {
+      answerCount++;
+    }
+    console.log(answerCount);
+  };
   return (
     <div
       css={{
