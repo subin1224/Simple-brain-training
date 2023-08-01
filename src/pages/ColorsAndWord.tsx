@@ -5,8 +5,9 @@ import { Card } from 'components/card/Card';
 import { CardContent } from 'components/card/CardContent';
 import { CardTitle } from 'components/card/CardTitle';
 
+const BOARD_ROW = 3;
+
 export function ColorsAndWord() {
-  const row = 3;
   const data = [
     { key: 'b-r', text: '파랑', color: 'red' },
     { key: 'g-y', text: '초록', color: 'yellow' },
@@ -32,7 +33,7 @@ export function ColorsAndWord() {
           </Txt>
         </CardTitle>
         <CardContent>
-          <ColorBoard row={row} data={data} />
+          <ColorBoard row={BOARD_ROW} data={data} />
         </CardContent>
       </Card>
     </PageLayout>
