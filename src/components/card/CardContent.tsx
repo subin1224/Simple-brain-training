@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { CSSObject } from "@emotion/react";
-import { ReactNode } from "react";
+import { CSSObject } from '@emotion/react';
+import { ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -11,7 +11,9 @@ export function CardContent({ children, css }: Props) {
   return (
     <div
       css={{
-        overflow: "hidden",
+        width: '800px',
+        overflow: 'hidden',
+        padding: '5px',
         ...css,
       }}
     >
