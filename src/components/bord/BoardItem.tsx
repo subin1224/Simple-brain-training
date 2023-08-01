@@ -1,21 +1,35 @@
 /** @jsxImportSource @emotion/react */
-import { HTMLAttributes } from 'react';
+import { Txt } from 'components/Txt';
+import { HTMLAttributes, ReactNode } from 'react';
 
 interface Props extends HTMLAttributes<HTMLParagraphElement> {
   color?: string;
   textAlign?: string;
+  children: ReactNode;
 }
-
-export function BoardItem({ color, ...props }: Props) {
+/** conextAPI / useReducer 사용 */
+const correctAnswer = 'blue';
+let answerCount = 0;
+const confirmClickValue = (color: string | undefined) => {
+  console.log(color);
+  if (correctAnswer === color) {
+    answerCount++;
+  }
+  console.log(answerCount);
+};
+export function BoardItem({ color, children, ...props }: Props) {
   return (
-    <p
+    <div
       css={{
-        color: color,
         textAlign: 'center',
-        fontWeight: 'bold',
         cursor: 'pointer',
       }}
       {...props}
-    />
+      onClick={() => confirmClickValue(color)}
+    >
+      <Txt typography="h5" color={color}>
+        {children}
+      </Txt>
+    </div>
   );
 }

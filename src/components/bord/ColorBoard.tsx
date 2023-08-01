@@ -2,11 +2,11 @@
 import { ReactNode } from 'react';
 import { BoardItem } from './BoardItem';
 
-type ItemObject = {
+interface ItemObject {
   key: string;
   text: string;
   color?: string;
-};
+}
 
 interface Props {
   row: number;
@@ -23,7 +23,7 @@ export function ColorBoard({ row, data }: Props) {
     >
       {data.map(
         (item): ReactNode => (
-          <BoardItem color={item.color} onClick={() => console.log(item.color)}>
+          <BoardItem key={`color - ${item.color}`} color={item.color}>
             {item.text}
           </BoardItem>
         )

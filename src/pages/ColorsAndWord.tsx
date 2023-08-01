@@ -17,6 +17,7 @@ const data = [
 ];
 // const q = Math.floor(Math.random() * 12 + 1)
 const question = '파란색';
+
 export function ColorsAndWord() {
   return (
     <PageLayout>
@@ -32,7 +33,7 @@ export function ColorsAndWord() {
           </Txt>
         </CardTitle>
         <CardContent>
-          <ColorBoard row={row} data={data}></ColorBoard>
+          <ColorBoard row={row} data={data} />
         </CardContent>
       </Card>
     </PageLayout>
