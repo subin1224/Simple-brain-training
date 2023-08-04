@@ -4,6 +4,7 @@ import { Main } from './pages/Main';
 import { FindAnimalName } from './pages/FindAnimalName';
 import { ColorsAndWord } from 'pages/ColorsAndWord';
 import { AnswerProvider } from 'contexts/answer-context';
+import { InstantMemory } from 'pages/InstantMemory';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path='/' element={<Main />} />
           <Route path='/findName' element={<FindAnimalName />} />
           <Route path='/colorsWord' element={<ColorsAndWord />} />
+          <Route path='/instantMemory' element={<InstantMemory />} />
         </Routes>
       </AnswerProvider>
     </BrowserRouter>

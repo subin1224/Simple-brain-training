@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 
 import { useEffect, useState } from 'react';
 import alarmClock from '../assets/alarm-clock.png';
 import { Txt } from './Txt';
-import { keyframes } from '@emotion/react';
 import { SIZE_TYPE } from '../constants/size';
 
 interface Props {
