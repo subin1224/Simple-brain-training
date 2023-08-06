@@ -10,10 +10,18 @@ import { SIZE_TYPE } from '../constants/size';
 interface Props {
   size?: SIZE_TYPE;
   initialTime: number;
+  right?: string;
+  top?: string;
   onTimeout: () => void;
 }
 
-export function AlarmClock({ size = 'small', initialTime, onTimeout }: Props) {
+export function AlarmClock({
+  size = 'small',
+  initialTime,
+  right = 'auto',
+  top = 'auto',
+  onTimeout,
+}: Props) {
   const [time, setTime] = useState<number>(initialTime);
   const [isFinished, setIsFinished] = useState<boolean>(false);
 
@@ -35,7 +43,9 @@ export function AlarmClock({ size = 'small', initialTime, onTimeout }: Props) {
     <div
       css={css`
         display: inline-block;
-        position: relative;
+        position: absolute;
+        right: ${right};
+        top: ${top};
         ${CLOCK_SIZE[size]}
         ${isFinished
           ? css`
@@ -78,6 +88,12 @@ const CLOCK_SIZE = {
     width: '200px',
     height: '200px',
     fontSize: '48px',
+    fontWeight: 800,
+  },
+  smaller: {
+    width: '100px',
+    height: '100px',
+    fontSize: '24px',
     fontWeight: 800,
   },
 };
