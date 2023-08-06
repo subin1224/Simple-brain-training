@@ -2,7 +2,7 @@
 import { ReactNode } from 'react';
 import { BoardItem } from './BoardItem';
 
-interface ItemObject {
+export interface ItemObject {
   key: string;
   text: string;
   color?: string;
@@ -11,9 +11,10 @@ interface ItemObject {
 interface Props {
   row: number;
   data: Array<ItemObject>;
+  colorHandler?: (value?: string | undefined) => void;
 }
 
-export function ColorBoard({ row, data }: Props) {
+export function Board({ row, data, colorHandler }: Props) {
   return (
     <div
       css={{
@@ -23,7 +24,11 @@ export function ColorBoard({ row, data }: Props) {
     >
       {data.map(
         (item): ReactNode => (
-          <BoardItem key={item.key} color={item.color}>
+          <BoardItem
+            key={item.key}
+            color={item.color}
+            colorHandler={colorHandler}
+          >
             {item.text}
           </BoardItem>
         )
