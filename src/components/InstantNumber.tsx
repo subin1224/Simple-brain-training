@@ -9,7 +9,7 @@ interface Props {
 }
 
 type FadeProp = { fade: 'fade-in' | 'fade-out' };
-const FADE_INTERVAL_MS = 1750;
+const FADE_INTERVAL_MS = 1500;
 
 export function InstantNumber({ value }: Props) {
   const [showNumberIdx, setShowNumberIdx] = useState<number>(0);
