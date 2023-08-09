@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Txt } from './Txt';
 
 interface Props {
@@ -18,31 +18,31 @@ export function InstantNumber({ value }: Props) {
   const showNumberArray = Array.from(String(value), Number);
 
   useEffect(() => {
-    const fadeTimeout = setInterval(() => {
+    const fadeTimeout = setTimeout(() => {
       fadeProp.fade === 'fade-in'
         ? setFadeProp({ fade: 'fade-out' })
         : setFadeProp({ fade: 'fade-in' });
     }, FADE_INTERVAL_MS);
 
     if (showNumberIdx >= showNumberArray.length) {
-      clearInterval(fadeTimeout);
+      clearTimeout(fadeTimeout);
       return;
     }
 
-    return () => clearInterval(fadeTimeout);
+    return () => clearTimeout(fadeTimeout);
   }, [fadeProp, showNumberIdx]);
 
   useEffect(() => {
-    const numberTimeout = setInterval(() => {
+    const numberTimeout = setTimeout(() => {
       setShowNumberIdx((prev) => prev + 1);
     }, FADE_INTERVAL_MS * 3);
 
     if (showNumberIdx >= showNumberArray.length) {
-      clearInterval(numberTimeout);
+      clearTimeout(numberTimeout);
       return;
     }
 
-    return () => clearInterval(numberTimeout);
+    return () => clearTimeout(numberTimeout);
   }, [showNumberIdx]);
 
   return (
