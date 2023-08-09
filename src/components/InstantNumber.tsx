@@ -1,46 +1,66 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useRef, useState } from 'react';
+import { css } from '@emotion/react';
 
+import { useEffect, useState } from 'react';
 import { Txt } from './Txt';
 
 interface Props {
   value: number;
 }
 
+type FadeProp = { fade: 'fade-in' | 'fade-out' };
+const FADE_INTERVAL_MS = 1750;
+
 export function InstantNumber({ value }: Props) {
-  const [showNumber, setShowNumber] = useState<string>('');
-  const timeouts = useRef<NodeJS.Timeout[]>([]);
-  const numbersRef = useRef<string[]>(Array.from(String(value) + ' '));
+  const [showNumberIdx, setShowNumberIdx] = useState<number>(0);
+  const [fadeProp, setFadeProp] = useState<FadeProp>({ fade: 'fade-out' });
+
+  const showNumberArray = Array.from(String(value), Number);
 
   useEffect(() => {
-    const timeoutsCopy = timeouts.current;
-    const numbers = numbersRef.current;
-    const setTimeNumber = async () => {
-      for (let i = 0; i < numbers.length; i++) {
-        await new Promise<void>((resolve) => {
-          timeouts.current[i] = setTimeout(() => {
-            setShowNumber(numbers[i]);
-            resolve();
-          }, 1500);
-        });
-      }
-    };
+    const fadeTimeout = setInterval(() => {
+      fadeProp.fade === 'fade-in'
+        ? setFadeProp({ fade: 'fade-out' })
+        : setFadeProp({ fade: 'fade-in' });
+    }, FADE_INTERVAL_MS);
 
-    setTimeNumber();
-    return () => {
-      timeoutsCopy.forEach((val) => {
-        clearTimeout(val);
-      });
-    };
-  }, []);
+    if (showNumberIdx >= showNumberArray.length) {
+      clearInterval(fadeTimeout);
+      return;
+    }
+
+    return () => clearInterval(fadeTimeout);
+  }, [fadeProp, showNumberIdx]);
+
+  useEffect(() => {
+    const numberTimeout = setInterval(() => {
+      setShowNumberIdx((prev) => prev + 1);
+    }, FADE_INTERVAL_MS * 3);
+
+    if (showNumberIdx >= showNumberArray.length) {
+      clearInterval(numberTimeout);
+      return;
+    }
+
+    return () => clearInterval(numberTimeout);
+  }, [showNumberIdx]);
 
   return (
     <div>
-      <NumberTxt txt={showNumber} />
+      <Txt css={fadeStyle[fadeProp.fade]} typography='h1'>
+        {showNumberArray[showNumberIdx]}
+      </Txt>
     </div>
   );
 }
 
-function NumberTxt({ txt }: { txt: string }) {
-  return <Txt typography='h1'>{txt}</Txt>;
-}
+const fadeStyle = {
+  'fade-in': css`
+    opacity: 1;
+    transition: opacity 1.5s ease;
+  `,
+  'fade-out': css`
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  `,
+};
