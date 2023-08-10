@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useState, ReactNode, useRef, useContext } from 'react';
+import { useState, ReactNode } from 'react';
 
 import { Txt } from '../components/Txt';
 import { Input } from '../components/Input';

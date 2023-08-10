@@ -9,7 +9,7 @@ import { Button } from 'components/Button';
 import { extractConsonant } from 'utils/commonUtils';
 import { Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
-import useCountAnswer from 'components/hooks/useCountAnswer';
+import useCountAnswer from 'hooks/useCountAnswer';
 import { AnswerContext } from 'contexts/answer-context';
 
 export interface QuestionFindAnimalName {
