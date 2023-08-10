@@ -5,7 +5,6 @@ import { FindAnimalName } from './pages/FindAnimalName';
 import { ColorsAndWord } from 'pages/ColorsAndWord';
 import { InstantMemory } from 'pages/InstantMemory';
 import { AnswerProvider } from 'contexts/answer-context';
-import { InstantMemory } from 'pages/InstantMemory';
 
 function App() {
   return (

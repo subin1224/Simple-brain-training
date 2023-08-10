@@ -10,7 +10,7 @@ import {
 interface Props
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   value: string;
-  length: number;
+  length?: number;
   onChange: (value: string) => void;
 }
 

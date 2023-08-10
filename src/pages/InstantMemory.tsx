@@ -4,8 +4,21 @@ import { Txt } from '../components/Txt';
 import { Card } from '../components/card/Card';
 import { CardContent } from '../components/card/CardContent';
 import { CardTitle } from '../components/card/CardTitle';
+import { useState } from 'react';
+import { Input } from 'components/Input';
 
 export function InstantMemory() {
+  const [showInput, setShowInput] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+
+  const onShowInstantNumber = () => {
+    setShowInput(true);
+  };
+
+  const changeHandler = (value: string) => {
+    setInputValue(value);
+  };
+
   return (
     <PageLayout>
       <Card>
@@ -16,11 +29,13 @@ export function InstantMemory() {
         </CardTitle>
         <CardContent
           css={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+            display: 'flex',
+            height: '300px',
+            textAlign: 'center',
           }}
         >
-          <InstantNumber value={543} />
+          <InstantNumber value={323} onShowNumber={onShowInstantNumber} />
+          {showInput && <Input value={inputValue} onChange={changeHandler} />}
         </CardContent>
       </Card>
     </PageLayout>

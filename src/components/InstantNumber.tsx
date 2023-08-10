@@ -6,12 +6,13 @@ import { Txt } from './Txt';
 
 interface Props {
   value: number;
+  onShowNumber: () => void;
 }
 
 type FadeProp = { fade: 'fade-in' | 'fade-out' };
 const FADE_INTERVAL_MS = 1500;
 
-export function InstantNumber({ value }: Props) {
+export function InstantNumber({ value, onShowNumber }: Props) {
   const [showNumberIdx, setShowNumberIdx] = useState<number>(0);
   const [fadeProp, setFadeProp] = useState<FadeProp>({ fade: 'fade-out' });
 
@@ -40,6 +41,7 @@ export function InstantNumber({ value }: Props) {
 
     if (showNumberIdx >= showNumberArrayLength) {
       clearTimeout(numberTimeout);
+      onShowNumber();
       return;
     }
 
@@ -47,7 +49,11 @@ export function InstantNumber({ value }: Props) {
   }, [showNumberIdx, showNumberArrayLength]);
 
   return (
-    <div>
+    <div
+      css={{
+        margin: '50px auto',
+      }}
+    >
       <Txt css={fadeStyle[fadeProp.fade]} typography='h1'>
         {showNumberArray[showNumberIdx]}
       </Txt>
