@@ -20,9 +20,9 @@ export function InstantNumber({ value }: Props) {
 
   useEffect(() => {
     const fadeTimeout = setTimeout(() => {
-      fadeProp.fade === 'fade-in'
-        ? setFadeProp({ fade: 'fade-out' })
-        : setFadeProp({ fade: 'fade-in' });
+      setFadeProp((prevFadeProp) => ({
+        fade: prevFadeProp.fade === 'fade-in' ? 'fade-out' : 'fade-in',
+      }));
     }, FADE_INTERVAL_MS);
 
     if (showNumberIdx >= showNumberArrayLength) {
