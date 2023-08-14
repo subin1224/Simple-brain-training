@@ -12,12 +12,22 @@ interface Props
   value: string;
   length?: number;
   variant?: 'standard' | 'filled' | 'outlined';
-  onChange: (value: string) => void;
+  type?: 'text' | 'number' | 'password';
+  readonly?: boolean;
+  onChange?: (value: string) => void;
 }
 
 export const Input = forwardRef(
   (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
-    const { value, length, variant = 'standard', onChange, ...rest } = props;
+    const {
+      value,
+      length,
+      variant = 'standard',
+      type = 'text',
+      readonly = false,
+      onChange = () => {},
+      ...rest
+    } = props;
 
     const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value.slice(0, length);
@@ -28,7 +38,7 @@ export const Input = forwardRef(
       <input
         css={{
           width: '100%',
-          padding: '0 18px',
+          padding: '0',
           color: 'dimgrey',
           fontSize: '40px',
           '&:focus': {
@@ -36,7 +46,7 @@ export const Input = forwardRef(
           },
           ...TYPE_VARIANTS[variant],
         }}
-        type='text'
+        type={type}
         value={value}
         onChange={changeHandler}
         ref={ref}
@@ -49,6 +59,7 @@ export const Input = forwardRef(
 const TYPE_VARIANTS = {
   standard: {
     border: 'none',
+    borderBottom: '1px solid #888',
     outline: 'none',
   },
   filled: {
