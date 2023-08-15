@@ -31,7 +31,19 @@ export function InstantMemory() {
         <CardTitle>
           <Txt typography='h3'>순간 기억력 테스트</Txt>
           <br />
-          <Txt typography='h5'>아래 숫자를 기억하세요.</Txt>
+          <Txt typography='h5'>
+            {finishNumber ? (
+              <span>
+                기억한 숫자를
+                <Txt typography='h5' color='red'>
+                  &nbsp;역순&nbsp;
+                </Txt>
+                으로 입력하세요
+              </span>
+            ) : (
+              '아래 숫자를 기억하세요'
+            )}
+          </Txt>
         </CardTitle>
         <CardContent
           css={{
