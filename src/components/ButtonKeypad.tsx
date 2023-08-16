@@ -50,7 +50,7 @@ export function ButtonKeypad({ clickButton }: Props) {
           justifyContent: 'center',
         }}
         variant='secondary'
-        onClick={() => clickDeleteHandler()}
+        onClick={clickDeleteHandler}
       >
         <FiDelete size='20px' />
       </Button>
