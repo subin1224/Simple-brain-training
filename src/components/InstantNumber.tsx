@@ -6,12 +6,13 @@ import { Txt } from './Txt';
 
 interface Props {
   value: number;
+  onFinishNumber: (value: boolean) => void;
 }
 
 type FadeProp = { fade: 'fade-in' | 'fade-out' };
 const FADE_INTERVAL_MS = 1500;
 
-export function InstantNumber({ value }: Props) {
+export function InstantNumber({ value, onFinishNumber }: Props) {
   const [showNumberIdx, setShowNumberIdx] = useState<number>(0);
   const [fadeProp, setFadeProp] = useState<FadeProp>({ fade: 'fade-out' });
 
@@ -20,9 +21,9 @@ export function InstantNumber({ value }: Props) {
 
   useEffect(() => {
     const fadeTimeout = setTimeout(() => {
-      fadeProp.fade === 'fade-in'
-        ? setFadeProp({ fade: 'fade-out' })
-        : setFadeProp({ fade: 'fade-in' });
+      setFadeProp((prevFadeProp) => ({
+        fade: prevFadeProp.fade === 'fade-in' ? 'fade-out' : 'fade-in',
+      }));
     }, FADE_INTERVAL_MS);
 
     if (showNumberIdx >= showNumberArrayLength) {
@@ -39,12 +40,13 @@ export function InstantNumber({ value }: Props) {
     }, FADE_INTERVAL_MS * 3);
 
     if (showNumberIdx >= showNumberArrayLength) {
+      onFinishNumber(true);
       clearTimeout(numberTimeout);
       return;
     }
 
     return () => clearTimeout(numberTimeout);
-  }, [showNumberIdx, showNumberArrayLength]);
+  }, [showNumberIdx, showNumberArrayLength, onFinishNumber]);
 
   return (
     <div>

@@ -10,4 +10,11 @@ const extractConsonant = (words: string): string => {
   return consonants;
 };
 
-export { extractConsonant };
+/**
+ * 원하는 범위의 난수를 뽑아주는 함수 (min <= number < max)
+ */
+const makeRandomNumber = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
+export { extractConsonant, makeRandomNumber };
