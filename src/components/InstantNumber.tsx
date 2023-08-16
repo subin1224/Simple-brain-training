@@ -46,7 +46,7 @@ export function InstantNumber({ value, onFinishNumber }: Props) {
     }
 
     return () => clearTimeout(numberTimeout);
-  }, [showNumberIdx, showNumberArrayLength]);
+  }, [showNumberIdx, showNumberArrayLength, onFinishNumber]);
 
   return (
     <div>

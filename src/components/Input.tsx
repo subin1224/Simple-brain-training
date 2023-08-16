@@ -49,6 +49,7 @@ export const Input = forwardRef(
         type={type}
         value={value}
         onChange={changeHandler}
+        readOnly={readonly}
         ref={ref}
         {...rest}
       />
