@@ -19,6 +19,7 @@ export function InstantMemory() {
    */
 
   const [finishNumber, setFinishNumber] = useState(false);
+  // const [level, setLevel] = useState(1);
 
   const randomNumber = makeRandomNumber(Math.pow(10, 2), Math.pow(10, 3));
   const finishHandler = (isFinishNum: boolean) => {
