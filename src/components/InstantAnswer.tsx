@@ -5,9 +5,14 @@ import { ButtonKeypad } from './ButtonKeypad';
 import { Input } from './Input';
 import { Button } from './Button';
 
+interface Props {
+  answer: string;
+  onNextButton: (value: boolean) => void;
+}
+
 const DELETE = 'del';
 
-export function InstantAnswer() {
+export function InstantAnswer({ answer, onNextButton }: Props) {
   const [inputValue, setInputValue] = useState('');
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -20,6 +25,15 @@ export function InstantAnswer() {
   const inputFocusHandler = () => {
     if (inputRef.current) {
       inputRef.current.blur();
+    }
+  };
+
+  const clickNextHandler = () => {
+    if (inputValue === answer) {
+      onNextButton(true);
+      console.log('next!!!');
+    } else {
+      console.log('answer...', answer);
     }
   };
 
@@ -39,7 +53,11 @@ export function InstantAnswer() {
         onFocus={inputFocusHandler}
       />
       <ButtonKeypad clickButton={getClickValue} />
-      <Button css={{ width: '50%', margin: '10px 0' }} variant='primary'>
+      <Button
+        css={{ width: '50%', margin: '10px 0' }}
+        variant='primary'
+        onClick={clickNextHandler}
+      >
         Next
       </Button>
     </div>

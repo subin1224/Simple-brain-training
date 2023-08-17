@@ -17,4 +17,15 @@ const makeRandomNumber = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-export { extractConsonant, makeRandomNumber };
+/**
+ * makeRandomNumber -> 사용자가 지정한 자릿수에 대해 난수를 뽑아주는 함수
+ * ex) 10의 자릿수 ~ 100의 자릿수
+ */
+const makeRandomNumberInRange = (placeValue: number): number => {
+  return makeRandomNumber(
+    Math.pow(10, placeValue),
+    Math.pow(10, placeValue + 1)
+  );
+};
+
+export { extractConsonant, makeRandomNumber, makeRandomNumberInRange };

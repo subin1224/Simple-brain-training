@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
+import { Fragment } from 'react';
 import { Button } from './Button';
 
 import { FiDelete } from 'react-icons/fi';
@@ -29,19 +30,13 @@ export function ButtonKeypad({ clickButton }: Props) {
         gap: '5px',
       }}
     >
-      {numberKeypad.map((num, idx) => (
-        <>
-          {num === 0 && (
-            <div key={`keypad_space`} css={{ gridColumn: '1 / 2' }} />
-          )}
-          <Button
-            key={`keypad_${num}_${idx}`}
-            variant='secondary'
-            onClick={() => clickNumberHandler(num)}
-          >
+      {numberKeypad.map((num) => (
+        <Fragment key={`keypad_${num}`}>
+          {num === 0 && <div css={{ gridColumn: '1 / 2' }} />}
+          <Button variant='secondary' onClick={() => clickNumberHandler(num)}>
             {num}
           </Button>
-        </>
+        </Fragment>
       ))}
       <Button
         css={{

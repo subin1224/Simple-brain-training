@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Txt } from './Txt';
 
 interface Props {
-  value: number;
+  value: string;
   onFinishNumber: (value: boolean) => void;
 }
 
@@ -16,7 +16,7 @@ export function InstantNumber({ value, onFinishNumber }: Props) {
   const [showNumberIdx, setShowNumberIdx] = useState<number>(0);
   const [fadeProp, setFadeProp] = useState<FadeProp>({ fade: 'fade-out' });
 
-  const showNumberArray = Array.from(String(value), Number);
+  const showNumberArray = Array.from(value, Number);
   const showNumberArrayLength = showNumberArray.length;
 
   useEffect(() => {

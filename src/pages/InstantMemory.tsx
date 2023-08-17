@@ -6,8 +6,8 @@ import { CardContent } from '../components/card/CardContent';
 import { CardTitle } from '../components/card/CardTitle';
 
 import { InstantAnswer } from 'components/InstantAnswer';
-import { makeRandomNumber } from 'utils/commonUtils';
-import { useState } from 'react';
+import { makeRandomNumber, makeRandomNumberInRange } from 'utils/commonUtils';
+import { useEffect, useState } from 'react';
 
 export function InstantMemory() {
   /**
@@ -20,12 +20,31 @@ export function InstantMemory() {
    */
 
   const [finishNumber, setFinishNumber] = useState(false);
-  // const [level, setLevel] = useState(1);
+  const [answerCount, setAnswerCount] = useState(0);
+  const [level, setLevel] = useState(1);
+  const [randomNumberString, setRandomNumberString] = useState(
+    makeRandomNumberInRange(level) + ''
+  );
 
-  const randomNumber = makeRandomNumber(Math.pow(10, 2), Math.pow(10, 3));
   const finishHandler = (isFinishNum: boolean) => {
     setFinishNumber(isFinishNum);
   };
+
+  const nextHandler = (val: boolean) => {
+    if (val) {
+      setAnswerCount((prev) => prev + 1);
+      setFinishNumber(false);
+    }
+  };
+
+  useEffect(() => {
+    const newRandomNumberString = makeRandomNumberInRange(level) + '';
+    setRandomNumberString(newRandomNumberString);
+  }, [level]);
+
+  useEffect(() => {
+    setLevel(answerCount + 2);
+  }, [answerCount]);
 
   return (
     <PageLayout>
@@ -55,11 +74,14 @@ export function InstantMemory() {
         >
           {!finishNumber ? (
             <InstantNumber
-              value={randomNumber}
+              value={randomNumberString}
               onFinishNumber={finishHandler}
             />
           ) : (
-            <InstantAnswer />
+            <InstantAnswer
+              answer={randomNumberString}
+              onNextButton={nextHandler}
+            />
           )}
         </CardContent>
       </Card>
