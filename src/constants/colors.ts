@@ -1,29 +1,22 @@
-export const colors = [
-  'blue',
-  'green',
-  'yellow',
-  'gray',
-  'pink',
-  'black',
-  'white',
-  'red',
-  'purple',
-  'beige',
-  'brown',
-  'orange',
-];
+import { ItemObject } from 'components/board/Board';
 
-export const words = [
-  '파랑',
-  '초록',
-  '노랑',
-  '회색',
-  '분홍',
-  '검정',
-  '흰색',
-  '빨강',
-  '보라',
-  '살구',
-  '갈색',
-  '주황',
-];
+export interface IColorsAndWords {
+  question: string;
+  questionData: Array<ItemObject>;
+}
+export interface IColorList {
+  [color: string]: string;
+}
+
+export const colorsAndWords: IColorList = {
+  blue: '파랑색',
+  green: '초록색',
+  yellow: '노랑색',
+  gray: '회색',
+  pink: '분홍색',
+  black: '검정색',
+  red: '빨강색',
+  purple: '보라색',
+  brown: '갈색',
+  orange: '주황색',
+};
