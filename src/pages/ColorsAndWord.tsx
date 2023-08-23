@@ -1,19 +1,16 @@
 import { AlarmClock } from 'components/AlarmClock';
 import { PageLayout } from 'components/PageLayout';
 import { Txt } from 'components/Txt';
-import { Board } from 'components/bord/Board';
+import { Board } from 'components/board/Board';
 import { Card } from 'components/card/Card';
 import { CardContent } from 'components/card/CardContent';
 import { CardTitle } from 'components/card/CardTitle';
-import {
-  IColorsAndWords,
-  colorsAndWords,
-  createColorQuestion,
-} from 'constants/colors';
+import { IColorsAndWords, colorsAndWords } from 'constants/colors';
 import { ALARM_CLOCK_SIZE } from 'constants/size';
 import { AnswerContext } from 'contexts/answer-context';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { createColorQuestion } from 'utils/questions';
 
 const BOARD_ROW = 3;
 /** TODO: question 관련 상수 나중에 한 페이지로 변경하기 */
@@ -56,14 +53,12 @@ export function ColorsAndWord() {
     <PageLayout>
       <Card>
         <CardTitle>
-          <Txt typography="h3">색깔 이름 맞히기</Txt>
+          <Txt typography="h3">글자 색 맞추기 퀴즈</Txt>
         </CardTitle>
         <CardContent>
+          {/* 문제를 이해할 수 있도록 변경 */}
           <Txt typography="h5">
-            <Txt typography="h5" color={question}>
-              {colorsAndWords[question]}
-            </Txt>{' '}
-            글자를 클릭하세요.
+            {colorsAndWords[question]}인 글자를 클릭하세요.
           </Txt>
           {!countdown && (
             <AlarmClock
@@ -83,15 +78,3 @@ export function ColorsAndWord() {
     </PageLayout>
   );
 }
-
-/**
- * 색상 클릭 시 문제 reset
- * 색상 클릭 X 3초 뒤 문제 reset
- * 문제 reset 하면 3초 카운트다운 다시 시작
- *
- *
- *
- *
- *
- *
- */
