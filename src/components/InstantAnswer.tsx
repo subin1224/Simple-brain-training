@@ -15,6 +15,7 @@ const DELETE = 'del';
 export function InstantAnswer({ answer, onNextButton }: Props) {
   const [inputValue, setInputValue] = useState('');
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const trueAnswer = makeReverseAnswer(answer);
 
   const getClickValue = (val: string) => {
     val === DELETE
@@ -29,7 +30,7 @@ export function InstantAnswer({ answer, onNextButton }: Props) {
   };
 
   const clickNextHandler = () => {
-    if (inputValue === answer) {
+    if (inputValue === trueAnswer) {
       onNextButton(true);
       console.log('next!!!');
     } else {
@@ -63,3 +64,7 @@ export function InstantAnswer({ answer, onNextButton }: Props) {
     </div>
   );
 }
+
+const makeReverseAnswer = (num: string): string => {
+  return num.split('').reverse().join();
+};
